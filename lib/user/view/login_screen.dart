@@ -8,6 +8,7 @@ import 'package:untitled1/common/const/colors.dart';
 import 'package:untitled1/common/layout/default_layout.dart';
 import 'package:untitled1/common/view/root_tab.dart';
 import '../../common/component/custom_text_form_field.dart';
+import '../../common/const/data.dart';
 
 class LoginScreen extends StatelessWidget{
 
@@ -19,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
    String username = '';
    String password ='';
   Widget build(BuildContext context) {
+    final storage = FlutterSe
     final dio = Dio();
     final emulatorIp = '10.0.2.2:3000';
     final simulatorIp = '127.0.0.1:3000';
@@ -68,8 +70,13 @@ class _LoginScreenState extends State<LoginScreen> {
               headers: {
                 'authorization' : 'Basic $token',
               },
-            ),
+            ),//
             );
+            final refreshToken = resp.data['refreshToken'];
+            final accessToken = resp. data['accessToken'];
+            await storage.write(key: REFRESH_TOKEN_KEY,value: refreshToken);
+            await storage.write(key: ACCESS_TOKEN_KEY,accessToken);
+            
           Navigator.of(context).push(
             MaterialPageRoute(builder: (_) => RootTab()),
           );
@@ -104,7 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
   );
   }
 }
-
 
 
 

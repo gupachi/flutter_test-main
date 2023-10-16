@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/common/const/colors.dart';
 
 
 class DefaultLayout extends StatelessWidget {
@@ -24,7 +25,7 @@ class DefaultLayout extends StatelessWidget {
       appBar: renderAppBar(),
       body: child,
       bottomNavigationBar: bottomNavigationBar,
-      floatingActionButton: floatingActionButton,
+
     );
   }
 
